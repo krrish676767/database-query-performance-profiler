@@ -1,0 +1,72 @@
+<mxfile host="app.diagrams.net" modified="2026-09-10T16:30:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram id="coffee_kiosk" name="Component Diagram">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Presentation Layer -->
+        <mxCell id="layer_pres" value="&lt;b&gt;&amp;laquo;layer&amp;raquo; Presentation Layer&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=#f8f9fa;strokeColor=#4a5568;strokeWidth=1.5;align=left;spacingLeft=10;fontSize=12;fontColor=#2b6cb0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="1040" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- User Interface Component -->
+        <mxCell id="comp_ui" value="&amp;laquo;component&amp;raquo;&lt;br&gt;&lt;b&gt;User Interface Component&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Touchscreen Display &amp; Menu Selection)&lt;/i&gt;" style="shape=component;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#1a365d;strokeWidth=1.5;fontSize=11;fontColor=#002b49;" vertex="1" parent="layer_pres">
+          <mxGeometry x="380" y="40" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- Business Layer -->
+        <mxCell id="layer_bus" value="&lt;b&gt;&amp;laquo;layer&amp;raquo; Business Layer&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=#f8f9fa;strokeColor=#4a5568;strokeWidth=1.5;align=left;spacingLeft=10;fontSize=12;fontColor=#2b6cb0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="270" width="760" height="420" as="geometry" />
+        </mxCell>
+        
+        <!-- Order Manager Component -->
+        <mxCell id="comp_om" value="&amp;laquo;component&amp;raquo;&lt;br&gt;&lt;b&gt;Order Manager Component&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Order Validation &amp; Workflow Controller)&lt;/i&gt;" style="shape=component;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#1a365d;strokeWidth=1.5;fontSize=11;fontColor=#002b49;" vertex="1" parent="layer_bus">
+          <mxGeometry x="240" y="50" width="280" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Payment Service Component -->
+        <mxCell id="comp_pay" value="&amp;laquo;component&amp;raquo;&lt;br&gt;&lt;b&gt;Payment Service Component&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Credit Card Processing Interface)&lt;/i&gt;" style="shape=component;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#1a365d;strokeWidth=1.5;fontSize=11;fontColor=#002b49;" vertex="1" parent="layer_bus">
+          <mxGeometry x="40" y="260" width="260" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Receipt Printer Component -->
+        <mxCell id="comp_print" value="&amp;laquo;component&amp;raquo;&lt;br&gt;&lt;b&gt;Receipt Printer Component&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Hardware Printing Driver)&lt;/i&gt;" style="shape=component;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#1a365d;strokeWidth=1.5;fontSize=11;fontColor=#002b49;" vertex="1" parent="layer_bus">
+          <mxGeometry x="450" y="260" width="260" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Data Layer -->
+        <mxCell id="layer_data" value="&lt;b&gt;&amp;laquo;layer&amp;raquo; Data Layer&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;dashed=1;dashPattern=5 5;fillColor=#f8f9fa;strokeColor=#4a5568;strokeWidth=1.5;align=left;spacingLeft=10;fontSize=12;fontColor=#2b6cb0;" vertex="1" parent="1">
+          <mxGeometry x="850" y="270" width="250" height="420" as="geometry" />
+        </mxCell>
+        
+        <!-- Database Component -->
+        <mxCell id="comp_db" value="&amp;laquo;component&amp;raquo;&lt;br&gt;&lt;b&gt;Database Component&lt;/b&gt;&lt;br&gt;&lt;i&gt;(Menu, Prices &amp; Orders Log)&lt;/i&gt;" style="shape=component;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#1a365d;strokeWidth=1.5;fontSize=11;fontColor=#002b49;" vertex="1" parent="layer_data">
+          <mxGeometry x="25" y="150" width="200" height="130" as="geometry" />
+        </mxCell>
+        
+        <!-- Assembly Connectors (Ball & Socket) -->
+        <!-- 1. UI -> Order Manager: Order Interface -->
+        <mxCell id="conn_order" value="Order Interface (IOrder)" style="endArrow=oval;startArrow=halfCircle;endFill=0;startFill=0;endSize=10;startSize=12;html=1;strokeColor=#1a365d;strokeWidth=1.5;fontColor=#2b6cb0;fontSize=10;fontStyle=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="comp_ui" target="comp_om">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 2. Order Manager -> Payment Service -->
+        <mxCell id="conn_pay" value="Payment Interface (IPayment)" style="endArrow=oval;startArrow=halfCircle;endFill=0;startFill=0;endSize=10;startSize=12;html=1;strokeColor=#1a365d;strokeWidth=1.5;fontColor=#2b6cb0;fontSize=10;fontStyle=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="comp_om" target="comp_pay">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 3. Order Manager -> Receipt Printer -->
+        <mxCell id="conn_print" value="Receipt Interface (IReceiptPrinter)" style="endArrow=oval;startArrow=halfCircle;endFill=0;startFill=0;endSize=10;startSize=12;html=1;strokeColor=#1a365d;strokeWidth=1.5;fontColor=#2b6cb0;fontSize=10;fontStyle=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="comp_om" target="comp_print">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 4. Order Manager -> Database -->
+        <mxCell id="conn_db" value="Database Interface (IDatabase)" style="endArrow=oval;startArrow=halfCircle;endFill=0;startFill=0;endSize=10;startSize=12;html=1;strokeColor=#1a365d;strokeWidth=1.5;fontColor=#2b6cb0;fontSize=10;fontStyle=1;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="comp_om" target="comp_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
