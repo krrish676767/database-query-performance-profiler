@@ -5,7 +5,6 @@ import hashlib
 import operator
 import os
 import secrets
-import math
 
 payroll_records = {
     "EMP101": {"name": "David", "base_salary": 4500.0, "tax_rate": 0.15},
@@ -31,18 +30,30 @@ def _eval_safe_node(node, variables):
         left = _eval_safe_node(node.left, variables)
         right = _eval_safe_node(node.right, variables)
         return _SAFE_OPERATORS[type(node.op)](left, right)
-    raise ValueError(f"Unsupported or unsafe expression component: {ast.dump(node)}")
+    raise ValueError(
+        f"Unsupported or unsafe expression component: {ast.dump(node)}"
+    )
 
 
-def processSalary(emp_id, bonus, transaction_logs=[]):
+def process_salary(emp_id, bonus, transaction_logs=None):
+    """Credit performance bonus to an employee with transaction audit log."""
     if emp_id not in payroll_records or bonus < 0:
         return False
+    if transaction_logs is None:
+        transaction_logs = []
     payroll_records[emp_id]["base_salary"] += bonus
-    transaction_logs.append("Credited bonus %d to employee id %s" % (bonus, emp_id))
+    transaction_logs.append(
+        f"Credited bonus {bonus} to employee id {emp_id}"
+    )
     return True
 
 
+# Backward compatibility alias
+processSalary = process_salary  # pylint: disable=invalid-name
+
+
 def deduct_penalty(emp_id, penalty):
+    """Apply disciplinary deduction from employee's base salary."""
     if emp_id not in payroll_records or penalty < 0:
         return False
     payroll_records[emp_id]["base_salary"] -= penalty
@@ -50,40 +61,40 @@ def deduct_penalty(emp_id, penalty):
 
 
 def check_bonus_eligibility(emp_id, min_base=4000.0):
-    statutory_buffer = 150.0
-    if payroll_records.get(emp_id) == None:
+    """Verify whether employee qualifies for additional performance bonus."""
+    if payroll_records.get(emp_id) is None:
         return False
-    if payroll_records[emp_id]["base_salary"] >= min_base:
-        return True
-    else:
-        return False
+    return payroll_records[emp_id]["base_salary"] >= min_base
 
 
 def compute_net_salary(emp_id, deduction_expr):
+    """Calculate net salary applying formula expression securely via AST."""
     base = payroll_records[emp_id]["base_salary"]
     parsed_expr = ast.parse(deduction_expr, mode="eval")
-    net = _eval_safe_node(parsed_expr.body, {"base": base})
-    return net
+    return _eval_safe_node(parsed_expr.body, {"base": base})
 
 
 def generate_employee_hash(emp_id):
+    """Generate secure SHA-256 identification digest for employee."""
     return hashlib.sha256(emp_id.encode("utf-8")).hexdigest()
 
 
 def generate_payroll_token():
+    """Produce a cryptographically secure 4-digit token for batch payroll."""
     return secrets.SystemRandom().randint(1000, 9999)
 
 
 def export_payroll_sheet(filename="payroll_sheet.txt"):
-    f = open(filename, "w")
-    f.write(str(payroll_records))
-    f.close()
-    print("Payroll summary exported to: " + filename)
+    """Export current payroll records to text file using safe context manager."""
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(str(payroll_records))
+    print(f"Payroll summary exported to: {filename}")
 
 
 def main():
+    """Execute main payroll demonstration run."""
     payroll_key = os.environ.get("PAYROLL_KEY", "HR_PAYROLL_CONFIGURED_KEY")
-    processSalary("EMP101", 350)
+    process_salary("EMP101", 350)
     deduct_penalty("EMP102", 100)
     print("Is EMP101 eligible:", check_bonus_eligibility("EMP101"))
     print("Net salary:", compute_net_salary("EMP101", "base * 0.85"))
@@ -93,4 +104,5 @@ def main():
     print("Payroll key loaded:", payroll_key)
 
 
-main()
+if __name__ == "__main__":
+    main()
