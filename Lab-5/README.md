@@ -1,51 +1,54 @@
 # Lab 5: Static Code Analysis — Employee Payroll System
 
-**Your file:** `employee_payroll_system.py`
+## Student Information
+- **Name:** Krrish P Raju
+- **SRN:** PES1UG24CS708
+- **Course:** UE23CS352B — Software Engineering Lab
+- **Assigned Problem Statement:** #44 Employee Payroll System (`employee_payroll_system.py`)
+- **Institution:** PES University, Department of Computer Science and Engineering
 
-Follow the lab handout for the full instructions.
+---
 
-## About the program
+## Deliverables in this Directory
 
-An employee salary and payroll manager. It logs bonuses, deducts disciplinary penalties, checks eligibility thresholds, computes net disbursements, and exports payroll summaries.
+| Deliverable File | Description | Verification / Status |
+| :--- | :--- | :--- |
+| 💻 [`employee_payroll_system.py`](./employee_payroll_system.py) | **Cleaned & Hardened Python Codebase** | All Bandit security issues eliminated, Flake8 PEP 8 compliant, Pylint score **10.00/10**. |
+| 📋 [`issues.md`](./issues.md) | **Completed Issues Identification Table** | Structured register mapping all detected defects, CWE IDs, line numbers, descriptions, and fix strategies. |
+| 📝 [`reflection.md`](./reflection.md) | **Static Analysis Reflection Report** | Detailed analysis covering static vs. dynamic analysis, tool comparisons, vulnerability deep dive, and CI/CD quality gates. |
+| 📄 [`pylint_report_before.txt`](./pylint_report_before.txt) | **Pylint Baseline Report (Before)** | Original static scan result showing **5.53/10** with 14 defects flagged. |
+| 📄 [`pylint_report_after.txt`](./pylint_report_after.txt) | **Pylint Remediated Report (After)** | Verification scan demonstrating **10.00/10** score with 0 warnings. |
+| 📄 [`pylint_report.txt`](./pylint_report.txt) | **Pylint Final Deliverable Report** | Verified final clean report (**10.00/10**). |
+| 🔒 [`bandit_report_before.txt`](./bandit_report_before.txt) | **Bandit Baseline Report (Before)** | Baseline security scan identifying 5 issues (2 High, 1 Medium, 2 Low). |
+| 🔒 [`bandit_report_after.txt`](./bandit_report_after.txt) | **Bandit Remediated Report (After)** | Security scan demonstrating 0 vulnerabilities detected. |
+| 🔒 [`bandit_report.txt`](./bandit_report.txt) | **Bandit Final Deliverable Report** | Verified final security report (0 issues). |
+| 🎨 [`flake8_report_before.txt`](./flake8_report_before.txt) | **Flake8 Baseline Report (Before)** | Baseline PEP 8 scan flagging line length, bare except, unused variables, and imports. |
+| 🎨 [`flake8_report_after.txt`](./flake8_report_after.txt) | **Flake8 Remediated Report (After)** | 0 PEP 8 violations detected (100% clean). |
+| 🎨 [`flake8_report.txt`](./flake8_report.txt) | **Flake8 Final Deliverable Report** | Verified final style report. |
 
-The code works, but only just. It has quality, style and security problems of the kind Pylint, Flake8 and Bandit are built to find.
+---
 
-## What to do
+## Static Code Analysis Summary
 
-1. **Run it first** and read the output carefully:
-   ```bash
-   python employee_payroll_system.py
-   ```
-   It asks one question. Press Enter to use the default, then try a few inputs of your own. Not every problem in this file is something a tool will flag, so pay attention to output that looks wrong.
+| Tool | Target Objective | Baseline (Before) | Post-Remediation (After) | Status |
+| :--- | :--- | :---: | :---: | :---: |
+| **Bandit** | Eliminate all security vulnerabilities | 5 issues (2 High, 1 Med, 2 Low) | **0 issues identified** | ✅ **Passed** |
+| **Pylint** | Achieve code quality score > 9.50 | 5.53 / 10.00 | **10.00 / 10.00** | ✅ **Passed** |
+| **Flake8** | Enforce PEP 8 style & formatting | 6 violations | **0 violations** | ✅ **Passed** |
 
-2. **Install the tools:**
-   ```bash
-   pip install pylint bandit flake8
-   ```
+---
 
-3. **Run the analysis** and save the reports:
-   ```bash
-   pylint employee_payroll_system.py > pylint_report.txt
-   bandit -r employee_payroll_system.py > bandit_report.txt
-   flake8 employee_payroll_system.py > flake8_report.txt
-   ```
+## How to Run and Verify
 
-4. **Document the issues** in `issues.md` using this table (at least 4 rows, high and medium severity first):
+```bash
+# 1. Activate virtual environment
+source ../venv/bin/activate
 
-   | Issue | Type | Line(s) | Description | Fix Approach |
-   |-------|------|---------|-------------|--------------|
-   | ... | ... | ... | ... | ... |
+# 2. Run the cleaned script
+python employee_payroll_system.py
 
-5. **Fix the code.** Fix at least 4 of the issues you documented, then rerun all three tools to confirm they are gone. Repeat until you are satisfied. The program should still do its job when you are done.
-
-6. **Reflect.** Answer the four reflection questions from the handout in `reflection.md`.
-
-## Deliverables
-
-1. `employee_payroll_system.py`: your cleaned version, with at least 4 issues fixed.
-2. `issues.md`: the completed issue table.
-3. `reflection.md`: your answers to the reflection questions.
-
-**Target:** aim for a Pylint score above 9.5 on your final file. A perfect 10.00/10 is very good.
-
-Be ready to explain the bugs you found and how you fixed them. You may be called on to present.
+# 3. Verify static analysis tool reports
+pylint employee_payroll_system.py
+bandit -r employee_payroll_system.py
+flake8 employee_payroll_system.py
+```

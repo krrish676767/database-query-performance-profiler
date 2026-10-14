@@ -85,7 +85,7 @@ def generate_payroll_token():
 
 
 def export_payroll_sheet(filename="payroll_sheet.txt"):
-    """Export current payroll records to text file using safe context manager."""
+    """Export payroll records to file using safe context manager."""
     with open(filename, "w", encoding="utf-8") as f:
         f.write(str(payroll_records))
     print(f"Payroll summary exported to: {filename}")

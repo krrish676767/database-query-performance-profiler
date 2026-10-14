@@ -19,13 +19,17 @@ In modern cloud backend architectures, unoptimized database queries and missing 
 
 ## 📁 Repository Deliverables Index
 
-This repository contains all completed deliverables for **Lab 1: Requirements Engineering & UML Use-Case Modelling (Problem Statement #44)**:
+This repository contains all completed lab assignments and deliverables for **UE23CS352B: Software Engineering**:
 
-| Deliverable File | Description | Criteria Satisfied |
+| Deliverable File / Directory | Description | Criteria Satisfied |
 | :--- | :--- | :--- |
-| 📄 [`REQUIREMENTS.md`](./REQUIREMENTS.md) | **Complete Requirements Table** | Exactly 5 Functional Requirements (FR-001 to FR-005) & 2 Non-Functional Requirements (NFR-001 & NFR-002) detailing ID, Type, Description, Priority, Acceptance Criteria (Pass/Fail), and Rationale. |
-| 📊 [`USE_CASE_DIAGRAM.md`](./USE_CASE_DIAGRAM.md) | **UML Use-Case Diagram & Specification** | Complete Use-Case model mapping all primary actors, 7 use cases, explicit `«include»` relationships, and `«extend»` relationships with trigger conditions (Mermaid, PlantUML & ASCII). |
-| 📝 [`USE_CASE_SPECIFICATION.md`](./USE_CASE_SPECIFICATION.md) | **1-Page Use-Case Flow Specification** | Detailed specification for core use case `UC-02: Parse SQL Execution Plans & Recommend Missing Indexes` including Preconditions, Postconditions, Main Success Scenario, and 2 Alternate Flows. |
+| 📄 [`REQUIREMENTS.md`](./REQUIREMENTS.md) | **Lab 1: Requirements Engineering** | Exactly 5 Functional Requirements (FR-001 to FR-005) & 2 Non-Functional Requirements (NFR-001 & NFR-002) with priority, acceptance criteria, and rationale. |
+| 📊 [`USE_CASE_DIAGRAM.md`](./USE_CASE_DIAGRAM.md) | **Lab 1: UML Use-Case Diagram** | Complete Use-Case model mapping primary actors, use cases, «include» & «extend» relationships. |
+| 📝 [`USE_CASE_SPECIFICATION.md`](./USE_CASE_SPECIFICATION.md) | **Lab 1: Use-Case Specification** | Detailed specification for `UC-02: Parse SQL Execution Plans & Recommend Missing Indexes`. |
+| 📁 [`Lab 2/`](./Lab%202) | **Lab 2: Software Requirements & Modelling** | Complete Lab 2 submission report (`PES1UG24CS708_LAB2_SE.pdf`). |
+| 📁 [`Lab 3/`](./Lab%203) | **Lab 3: Component Modelling & Architecture** | Component diagram, justification doc, and report (`PES1UG24CS708_LAB3_SE.pdf`). |
+| 📁 [`Lab-4/`](./Lab-4) / [`Lab 4`](./Lab%204) | **Lab 4: VibeCoding & LLM Debugging** | LLM chat history, engine fixes, demo videos, and report (`Lab4_Chat_History_PES1UG24CS708.pdf`). |
+| 🛡️ [`Lab-5/`](./Lab-5) / [`Lab 5`](./Lab%205) | **Lab 5: Static Code Analysis (Pylint, Bandit, Flake8)** | Complete Lab 5 deliverables: remediated `employee_payroll_system.py`, `issues.md` issue matrix, `reflection.md` report, verified before/after scan reports (**Pylint 10.00/10**, **Bandit 0 issues**, **Flake8 0 violations**), and formal submission document (`PES1UG24CS708_LAB5_SE.pdf`). |
 
 ---
 
