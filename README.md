@@ -39,7 +39,7 @@ To submit this lab assignment to your GitHub account:
 
 1. **Initialize Git Repository:**
    ```bash
-   cd C:\Users\Akshay\.gemini\antigravity\scratch\database-query-performance-profiler
+   cd database-query-performance-profiler
    git init
    git add .
    git commit -m "Initial submission for Lab 1 Requirements Engineering & UML Use-Case Modelling"
